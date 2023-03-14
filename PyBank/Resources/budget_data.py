@@ -76,13 +76,13 @@ with open(csvpath,encoding='utf') as csvfile:
 with open(file_to_save, "w") as txt_file:
     # Print the final vote count to the terminal.
     budget_analysis = (
-                        "Financial Analysis", 
-                         "----------------------------------",
-                         "Total Months :"  +  str(total_months), 
-                        "Total :"  + str(total_pl), 
-                        "Average Changes :"  + str(total_changes),
-    "Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_inc) + ")",
-    "Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_dec)+ ")")
+                        "Financial Analysis"+ '.\n'
+                         "----------------------------------"+ '.\n',
+                         "Total Months :"  +  str(total_months)+ '.\n', 
+                        "Total :"  + str(total_pl)+ '.\n', 
+                        "Average Changes :"  + str(total_changes)+ '.\n',
+    "Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_inc) + ")"+ '.\n',
+    "Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_dec)+ ")"+ '.\n')
     print(budget_analysis)
 
     # Save the final vote count to the text file.
