@@ -16,8 +16,8 @@ changes = 0
 # create lists to store data
 change_list = []
 date_list = []
-#greatest_inc = ["",0]
-#greatest_dec = ["", 9999999999999999999]
+greatest_inc = {}
+greatest_dec = {}
 
 
 #  open and read csv
@@ -46,18 +46,21 @@ with open(csvpath,encoding='utf') as csvfile:
 
         total_changes = (total_changes + changes)/ total_months
 
-        #date_list.append(row[0])
+         # save months in a list
+        date_list.append(row[0])
 
-        #changes.append(change_list)
+        # save monthly changes in a list
+        change_list.append(changes)
 
-        #greatest_inc = max(changes)
-        #greatest_dec = min(changes)
+        # Find the min,max values in changes list
+        greatest_inc = max(change_list)
+        greatest_dec = min(change_list)
 
-        #increase_date = date_list[changes.index(greatest_inc)]
-        #decrease_date = date_list[changes.index(greatest_dec)]
+        #Assign corresponding dates to min,max changes
+        increase_date = date_list[change_list.index(greatest_inc)]
+        decrease_date = date_list[change_list.index(greatest_dec)]
       
 
- 
 
     # return calculations values
     print("Financial Analysis")
@@ -65,24 +68,25 @@ with open(csvpath,encoding='utf') as csvfile:
     print("Total Months :"  +  str(total_months))
     print("Total :"  + str(total_pl))
     print("Average Changes :"  + str(total_changes))
-    #print("Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_inc) + ")")
-    #print("Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_dec)+ ")")
+    print("Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_inc) + ")")
+    print("Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_dec)+ ")")
 
 
 # Save the results to our text file.
 with open(file_to_save, "w") as txt_file:
     # Print the final vote count to the terminal.
     budget_analysis = (
-    "Financial Analysis",
-    "----------------------------------",
-    "Total Months :"  +  str(total_months),
-    "Total :"  + str(total_pl),
-    "Average Changes :"  + str(total_changes))
-    #"Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_inc) + ")",
-    #"Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_dec)+ ")")
+                        "Financial Analysis", 
+                         "----------------------------------",
+                         "Total Months :"  +  str(total_months), 
+                        "Total :"  + str(total_pl), 
+                        "Average Changes :"  + str(total_changes),
+    "Greatest Increase in Profits: " + str(increase_date) + " ($" + str(greatest_inc) + ")",
+    "Greatest Decrease in Profits: " + str(decrease_date) + " ($" + str(greatest_dec)+ ")")
     print(budget_analysis)
+
     # Save the final vote count to the text file.
-    txt_file.write(budget_analysis)
+    txt_file.writelines(budget_analysis)
 
 
 
